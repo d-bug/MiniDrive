@@ -73,14 +73,14 @@ namespace MiniDriveTestApp
             if (deletedDrives.Count > 0)
             {
                 processedDrives.AddRange(deletedDrives);
-            }
 
-            // Possible missalignment, normalize?? (negative FreeSize => += UsedSize ) --- too deep to debug now!
-            for (int i = 0; i < processedDrives.Count; i++)
-            {
-                if (processedDrives[i].FreeSize < 0)
+                // Possible missalignment, normalize?? (negative FreeSize => += UsedSize ) --- too deep to debug now!
+                for (int i = 0; i < processedDrives.Count; i++)
                 {
-                    processedDrives[i].UsedSize += processedDrives[i].FreeSize;
+                    if (processedDrives[i].FreeSize < 0)
+                    {
+                        processedDrives[i].UsedSize += processedDrives[i].FreeSize;
+                    }
                 }
             }
 
