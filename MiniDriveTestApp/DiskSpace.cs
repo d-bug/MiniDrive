@@ -101,9 +101,7 @@ namespace MiniDriveTestApp
             // return drives still containing data after consolidation
             int retVal = processedDrives.Count<DriveModel>(x => x.UsedSize > 0);
 
-            // if the drives found are as many as the input drives,
-            // no optimization is possible, return 0.
-            // Otherwise return the min drives calculated.
+            // return the min drives calculated.
             return (retVal);
         }
 
