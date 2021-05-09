@@ -69,12 +69,13 @@ namespace MiniDriveTestApp
                 }
             }
 
-            // add any deleted drives
+            // when any any deleted drives found, add them to the processing drives
+            // for display and adjust their used size.
             if (deletedDrives.Count > 0)
             {
                 processedDrives.AddRange(deletedDrives);
 
-                // Possible missalignment, normalize?? (negative FreeSize => += UsedSize ) --- too deep to debug now!
+                // Adjust deleted drive usedSize (negative FreeSize => += UsedSize )
                 for (int i = 0; i < processedDrives.Count; i++)
                 {
                     if (processedDrives[i].FreeSize < 0)
