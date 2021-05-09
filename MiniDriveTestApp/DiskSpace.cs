@@ -74,15 +74,6 @@ namespace MiniDriveTestApp
             if (deletedDrives.Count > 0)
             {
                 processedDrives.AddRange(deletedDrives);
-
-                // Adjust deleted drive usedSize (negative FreeSize => += UsedSize )
-                for (int i = 0; i < processedDrives.Count; i++)
-                {
-                    if (processedDrives[i].FreeSize < 0)
-                    {
-                        processedDrives[i].UsedSize += processedDrives[i].FreeSize;
-                    }
-                }
             }
 
             // re-order by id
@@ -231,6 +222,10 @@ namespace MiniDriveTestApp
                     // exclude it from valid processing drives
                     if (processedDrives[i].FreeSize <= 0)
                     {
+                        // adjust used size -> 0
+                        processedDrives[i].UsedSize += processedDrives[i].FreeSize;
+
+                        // add drive to deleted
                         deletedDrives.Add(processedDrives[i]);
 
                         // remove it from the processing list
