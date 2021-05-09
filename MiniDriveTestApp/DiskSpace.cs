@@ -229,10 +229,10 @@ namespace MiniDriveTestApp
                     processedDrives[index].UsedSize += requiredSize;
                     found = true;
 
-                    // Check this!
+                    // if current processed drive's freesize <= 0,
+                    // exclude it from valid processing drives
                     if (processedDrives[i].FreeSize <= 0)
                     {
-                        // TODO Mark as deleted!                        
                         deletedDrives.Add(processedDrives[i]);
 
                         // remove it from the processing list
